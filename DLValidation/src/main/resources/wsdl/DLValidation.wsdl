@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://soacourse.unsw.edu.au/Validater" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msgdef="http://soacourse.unsw.edu.au/DriverLicenseInfo"
+	name="DriverLicenseValidateService" targetNamespace="http://soacourse.unsw.edu.au/Validater">
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://soacourse.unsw.edu.au/DriverLicenseInfo"
+				schemaLocation="../xsd/dlmessages.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="DriverLicenceRequestMsg">
+		<wsdl:part element="msgdef:driverLicenceMessage" name="dlreq" />
+	</wsdl:message>
+	<wsdl:message name="DriverLicenceResponseMsg">
+		<wsdl:part element="msgdef:validMessage" name="dlresp" />
+	</wsdl:message>
+	<wsdl:message name="DriverLicenseServiceFaultMsg">
+		<wsdl:part element="msgdef:serviceFaultMessage" name="dlreqFault" />
+	</wsdl:message>
+
+	<wsdl:portType name="DLValidationPT">
+		<wsdl:operation name="driverValidate">
+			<wsdl:input message="tns:DriverLicenceRequestMsg" />
+			<wsdl:output message="tns:DriverLicenceResponseMsg" />
+			<wsdl:fault name="servicefault" message="tns:DriverLicenseServiceFaultMsg"></wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+	<wsdl:binding name="DLValidationSOAPBinding" type="tns:DLValidationPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="driverValidate">
+			<soap:operation
+				soapAction="http://soacourse.unsw.edu.au/DLValidation/driverValidate" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DLValidationService">
+		<wsdl:port binding="tns:DLValidationSOAPBinding" name="DLValidationSOAP">
+			<soap:address location="http://www.example.org/" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
