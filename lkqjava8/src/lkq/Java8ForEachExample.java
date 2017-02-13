@@ -17,7 +17,7 @@ public class Java8ForEachExample {
 		Iterator<Integer> it = myList.iterator();
 		while (it.hasNext()) {
 			Integer i = it.next();
-			System.out.println("Iterator Value::" + i);
+			System.out.println("mdzzIterator Value::" + i);
 		}
 
 		// traversing through forEach method of Iterable with anonymous class
