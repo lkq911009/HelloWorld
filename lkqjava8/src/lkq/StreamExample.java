@@ -15,8 +15,10 @@ public class StreamExample {
 		for(int i=0;i<10;i++){
 			ls.add("a "+i);
 		}
-		Stream<String> strStream=ls.stream().filter(p->p.contains("a 0"));
-		strStream.forEach(p->System.out.println(p));
+//		Stream<String> strStream=ls.stream().filter(p->p.contains("a 0"));
+//		strStream.forEach(p->System.out.println(p));
+//		Stream<String> stream1 = Stream.generate(() -> {for(int i=0;i<10;i++)return "abc"});
+//		stream1.forEach(i->System.out.println(i));
 		
 
 		// sequential stream
@@ -30,9 +32,9 @@ public class StreamExample {
 		// using lambda in forEach
 		highNums.forEach(p -> System.out.println("High Nums parallel=" + p));
 
-		Stream<Integer> highNumsSeq = sequentialStream.filter(p->p>=90 && p%2==0);
-		highNumsSeq.forEach(p -> System.out
-				.println("High Nums sequential=" + p));
+		//Stream<Integer> highNumsSeq = sequentialStream.filter(p->p>=90 && p%2==0).mapToInt(mapper);
+		//highNumsSeq.forEach(p -> System.out
+				//.println("High Nums sequential=" + p));
 
 	}
 }
